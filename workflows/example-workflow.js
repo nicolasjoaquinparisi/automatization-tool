@@ -32,7 +32,7 @@ async function main() {
 
   const result = await postgresNode.insert({ table, columns, values });
 
-  // console.log(result);
+  console.log(result);
 }
 
 main();
