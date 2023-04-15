@@ -1,0 +1,17 @@
+{
+  "name": "automatization-tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "pokemon-workflow": "node ./workflows/pokemon.js"
+  },
+  "author": "Nicolas Joaquin Parisi",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.3.4",
+    "joi": "^17.9.1",
+    "pg": "^8.10.0"
+  }
+}
