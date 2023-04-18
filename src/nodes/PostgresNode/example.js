@@ -26,7 +26,7 @@ async function main() {
 
   await postgresNode.insert({ table, columns, values });
 
-  // Update the row with ID = 1
+  // Update the row with ID = 2
   postgresNode.update({
     table: "pokemon",
     set: {
