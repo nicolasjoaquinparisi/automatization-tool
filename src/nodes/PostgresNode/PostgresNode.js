@@ -1,7 +1,7 @@
 import pkg from "pg";
 const { Pool, QueryResult } = pkg;
 
-import { updateSchema } from "./validators.js";
+import { updateSchema } from "./utils/validators.js";
 
 class PostgresNode {
   constructor({ credentials }) {
