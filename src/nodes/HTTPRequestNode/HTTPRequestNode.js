@@ -1,5 +1,5 @@
 import axios from "axios";
-import { httpRequestSchema } from "./validators.js";
+import { httpRequestSchema } from "./utils/validators.js";
 
 class HTTPRequestNode {
   constructor({ url, method, headers, body }) {
