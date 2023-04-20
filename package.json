@@ -4,9 +4,6 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "pokemon-workflow": "node ./workflows/pokemon.js"
-  },
   "author": "Nicolas Joaquin Parisi",
   "license": "ISC",
   "dependencies": {
