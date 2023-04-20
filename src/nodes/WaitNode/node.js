@@ -34,6 +34,8 @@ class WaitNode {
   }
 
   async execute() {
+    console.log("Executing Wait Node");
+
     return await new Promise((resolve) => setTimeout(resolve, this.waitTime));
   }
 }

@@ -22,7 +22,7 @@ class HTTPRequestNode {
   }
 
   async execute() {
-    console.log("Executing HTTP Request");
+    console.log("Executing HTTP Request Node");
 
     try {
       const response = await this.axiosClient.request();

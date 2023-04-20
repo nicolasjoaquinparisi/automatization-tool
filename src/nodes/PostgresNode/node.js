@@ -29,6 +29,8 @@ class PostgresNode {
   }
 
   async executeQuery({ query }) {
+    console.log("Executing Postgres Node");
+
     try {
       const client = await this.pool.connect();
       const result = await client.query(query);
@@ -56,6 +58,8 @@ class PostgresNode {
    * @returns {QueryResult} The executed query result.
    */
   async insert({ table, data }) {
+    console.log("Executing Postgres Node");
+
     try {
       const validation = insertSchema.validate({ table, data });
 
@@ -98,6 +102,8 @@ class PostgresNode {
    * @returns {QueryResult} The executed query result.
    */
   async update({ table, set, where }) {
+    console.log("Executing Postgres Node");
+
     try {
       const validation = updateSchema.validate({ table, set, where });
 
