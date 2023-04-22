@@ -14,11 +14,11 @@ class SingletonServer {
     this.server.listen(process.env.PORT, () => {});
 
     this.endpoints = {
-      GET: [],
-      POST: [],
-      PUT: [],
-      PATCH: [],
-      DELETE: [],
+      get: [],
+      post: [],
+      put: [],
+      patch: [],
+      delete: [],
     };
   }
 
@@ -31,7 +31,9 @@ class SingletonServer {
   }
 
   addEndpoint({ httpMethod, path, callback, id }) {
-    const hasEndpointWithSamePath = this.endpoints[httpMethod].find(
+    const sanitizedHttpMethod = httpMethod.toLowerCase();
+
+    const hasEndpointWithSamePath = this.endpoints[sanitizedHttpMethod].find(
       (endpoint) => endpoint.path === path
     );
 
@@ -39,17 +41,17 @@ class SingletonServer {
       throw new Error("The provided path is already in use.");
     }
 
-    switch (httpMethod) {
-      case "POST":
+    switch (sanitizedHttpMethod) {
+      case "post":
         this.router.post(`/${path}`, callback);
         break;
-      case "GET":
+      case "get":
         this.router.get(`/${path}`, callback);
         break;
-      case "PATCH":
+      case "patch":
         this.router.patch(`${path}/${id}`, callback);
         break;
-      case "PUT":
+      case "put":
         this.router.put(`${path}/${id}`, callback);
         break;
     }
@@ -58,12 +60,21 @@ class SingletonServer {
   }
 
   deleteEndpoint({ httpMethod, path }) {
-    const endpointIndex = this.endpoints[httpMethod].findIndex(
-      (endpoint) => endpoint.path === path
+    const sanitizedHttpMethod = httpMethod.toLowerCase();
+
+    const routeIndex = this.router.stack.findIndex(
+      (r) => r.route.path === `/${path}` && r.route.methods[sanitizedHttpMethod]
     );
 
-    if (endpointIndex !== -1) {
-      this.endpoints[httpMethod].splice(endpointIndex, 1);
+    if (routeIndex !== -1) {
+      this.router.stack.splice(routeIndex, 1);
+      const endpointIndex = this.endpoints[sanitizedHttpMethod].findIndex(
+        (endpoint) => endpoint.path === path
+      );
+
+      if (endpointIndex !== -1) {
+        this.endpoints[sanitizedHttpMethod].splice(endpointIndex, 1);
+      }
     }
   }
 }
