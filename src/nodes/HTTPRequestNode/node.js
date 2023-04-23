@@ -2,16 +2,25 @@ import axios from "axios";
 import { httpRequestSchema } from "./utils/validators.js";
 
 class HTTPRequestNode {
-  constructor({ url, method, headers, body }) {
-    this.setup({ url, method, headers, body });
+  constructor({
+    name = "HTTP Request Node",
+    url,
+    method,
+    headers,
+    body,
+    logger,
+  }) {
+    this.setup({ name, url, method, headers, body, logger });
   }
 
-  setup({ url, method, headers, body }) {
+  setup({ name, url, method, headers, body, logger }) {
     const { error, value } = httpRequestSchema.validate({ url, method, body });
 
     if (error) {
       throw new Error(error.details[0].message);
     }
+
+    this.name = name;
 
     this.axiosClient = axios.create({
       baseURL: url,
@@ -19,6 +28,9 @@ class HTTPRequestNode {
       headers,
       method,
     });
+
+    this.logger = logger;
+    this.logger.log(`Created ${name}.`);
   }
 
   async execute() {
