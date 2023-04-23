@@ -1,5 +1,5 @@
 import { WebhookNode } from "./node.js";
-import { HTTPRequestNode } from "../HTTPRequestNode/node.js";
+import { HTTPRequestNode } from "../node/node.js";
 
 async function webhookCallback(req, res) {
   console.log("Executing webhook");

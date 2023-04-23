@@ -1,4 +1,4 @@
-import { WaitNode } from "./WaitNode.js";
+import { WaitNode } from "./node.js";
 
 async function main() {
   let resume = "After time interval";

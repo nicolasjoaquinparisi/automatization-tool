@@ -1,4 +1,4 @@
-import { PostgresNode } from "./PostgresNode.js";
+import { PostgresNode } from "./node.js";
 
 const POSTGRES_CREDENTIALS = {
   host: "postgres",
