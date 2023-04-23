@@ -29,8 +29,10 @@ class HTTPRequestNode {
       method,
     });
 
-    this.logger = logger;
-    this.logger.log(`Created ${name}.`);
+    if (logger) {
+      this.logger = logger;
+      this.logger.log(`Created ${name}.`);
+    }
   }
 
   async execute() {
@@ -39,7 +41,7 @@ class HTTPRequestNode {
     try {
       const response = await this.axiosClient.request();
 
-      return response.data;
+      return response;
     } catch (error) {
       console.error(error);
       return error;
