@@ -4,7 +4,7 @@ const setupSchema = Joi.object({
   user: Joi.string().required(),
   password: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
   host: Joi.string().required(),
-  password: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
+  port: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
   database: Joi.string().required(),
 });
 
